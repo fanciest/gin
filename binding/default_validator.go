@@ -15,7 +15,7 @@ type defaultValidator struct {
 var _ StructValidator = &defaultValidator{}
 
 func (v *defaultValidator) ValidateStruct(obj interface{}) error {
-	if kindOfData(obj) == reflect.Struct {
+	if kindOfData(obj) == reflect.Struct || kindOfData(obj) == reflect.Interface {
 		v.lazyinit()
 		if err := v.validate.Struct(obj); err != nil {
 			return error(err)
